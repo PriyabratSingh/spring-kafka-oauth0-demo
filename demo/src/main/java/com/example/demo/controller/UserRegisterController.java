@@ -38,8 +38,9 @@ public class UserRegisterController {
     }
 
     @GetMapping("/getAllUser")
-    public ResponseEntity<List<com.example.demo.entity.UserRegister>> getAllUser(){
-        List<com.example.demo.entity.UserRegister> userList = userRegisterService.getAllUser();
+    public ResponseEntity<List<com.example.demo.entity.UserRegister>> getAllUser(
+            @RequestParam(required = false, defaultValue = "0") Long cursor, @RequestParam(defaultValue = "3") int limit){
+        List<com.example.demo.entity.UserRegister> userList = userRegisterService.getAllUser(cursor,limit);
         return ResponseEntity.ok().body(userList);
     }
 

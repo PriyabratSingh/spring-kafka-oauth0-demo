@@ -6,8 +6,11 @@ import com.example.demo.repository.UserRegisterRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -26,10 +29,8 @@ public class UserRegisterService {
         logger.debug("The user has been save successfully");
     }
 
-
-    public List<com.example.demo.entity.UserRegister> getAllUser(){
-
-        return repository.findAll();
+    public List<com.example.demo.entity.UserRegister> getAllUser(Long cursor, int limit){
+        return repository.findUserRegisters(cursor, PageRequest.of(0, limit));
     }
 
 
