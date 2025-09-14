@@ -6,6 +6,8 @@ import com.example.demo.repository.UserRegisterRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,7 @@ public class UserRegisterService {
         logger.debug("The user has been save successfully");
     }
 
+    @Cacheable(value = "userRegister", key = "#cursor + '-' + #limit")
     public List<com.example.demo.entity.UserRegister> getAllUser(Long cursor, int limit){
         return repository.findUserRegisters(cursor, PageRequest.of(0, limit));
     }

@@ -55,3 +55,12 @@ server:
         key-serializer: org.apache.kafka.common.serialization.StringDeserializer
       bootstrap-servers: localhost:9092
 
+  spring:
+    cache:
+      type: redis
+    redis:
+      host: localhost
+      port: 6379
+      # password: yourpassword   # if Redis has auth
+
+

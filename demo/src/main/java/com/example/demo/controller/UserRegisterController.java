@@ -37,6 +37,7 @@ public class UserRegisterController {
         return ResponseEntity.ok("User has Register Successfull");
     }
 
+
     @GetMapping("/getAllUser")
     public ResponseEntity<List<com.example.demo.entity.UserRegister>> getAllUser(
             @RequestParam(required = false, defaultValue = "0") Long cursor, @RequestParam(defaultValue = "3") int limit){
